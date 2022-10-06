@@ -148,9 +148,17 @@ int main(int, char*[])
     graph_attr["ratio"] = "fill";
     vertex_attr["shape"] = "circle";
 
-    boost::write_graphviz(std::cout, g, make_label_writer(name),
+    std::ofstream dotfile;
+    dotfile.open("test_graphviz.dot");
+    
+    boost::write_graphviz(dotfile, g, make_label_writer(name),
         make_label_writer(trans_delay),
         make_graph_attributes_writer(graph_attr, vertex_attr, edge_attr));
+    dotfile.close();
+    
+    std::cout << "Have you written to file yet?";
 
     return 0;
+
+
 }
